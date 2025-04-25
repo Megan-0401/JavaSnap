@@ -14,18 +14,27 @@ basics, while some of you will push on into the stratosphere!
 
 ---
 
-## Stage 1
+## Stage 1 [ ]
 
 Using classes, ArrayLists and methods, create a deck of Cards. You should use the following
 classes:
 
-### CardGame
+### CardGame [ ]
 
 - Contains an ArrayList\<Card\> for the deckOfCards that contains all 52 cards. This is created and populated when the game is constructed.
+    - 13 cards of each suit
+    - 4 cards of each symbol
+    - 4 cards of each value
+    - Each suit needs a card of one symbol and one value
+    - ♠ (spade), ♥ (heart), ♦ (diamond), ♣ (club)
+
+    - 3 array lists (suit, symbol, value)
+    - loop through each suit -> loop through each value -> add a new card to the deckOfCards with the suit, symbol and value
+
 - Has a name which is also defined in the constructor.
 - Has a getDeck method that lists out the cards in the deck.
 
-### Card
+### Card [x]
 
 - Has a String suit. Use the unicode characters of heart, club, diamond and spade.
 - Has a String symbol (2,3,4,5,6,7,8,9,10,J,Q,K,A)
