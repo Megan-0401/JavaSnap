@@ -64,10 +64,17 @@ Sorts the deck in number order (e.g. 2222333344445555 etc) and stores the new sh
 **ArrayList\<Card\> sortDeckIntoSuits()** [ ]
 
 Sorts the deck into suits (2,3,4,5,6,7,8,9,10,J,Q,K,A of hearts, then 2,3,4,5,6,7,8,9,10,J,Q,K,A of clubs etc.) and stores the new shuffled deck back into the deckOfCards attribute.
+- call sortDeckInNumberOrder to make sure the cards are ordered by value
+- create a class that implements the comparator interface
+- 3 comparisons are needed: heartCompare, clubCompare, diamondCompare (spades will be left at the end)
+- if Card a and Card b are the same suit, return 0 (remain as they are)
+- if Card a is the suit and Card b is not, return -1 (a goes before b)
+- if Card a is not the suit and Card b is, return 1 (a goes after b)
 
 **ArrayList\<Card\> shuffleDeck()** [ ]
 
 Shuffles the deck into a random order and stores the new shuffled deck back into the deckOfCards attribute.
+- shuffle deckOfCards with the Collections interface method
 
 ---
 
