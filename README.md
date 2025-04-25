@@ -43,23 +43,29 @@ classes:
 
 ---
 
-## Stage 2
+## Stage 2 [ ]
 
 Lets get some core functionality to our CardGame by implementing the following methods:
 
-**Card dealCard()**
+**Card dealCard()** [x]
 
 Takes the card from the top of the deck and returns it.
+- returns a Card (object)
+- get Card from the first index of deckOfCards
 
-**ArrayList\<Card\> sortDeckInNumberOrder()**
+**ArrayList\<Card\> sortDeckInNumberOrder()** [x]
 
 Sorts the deck in number order (e.g. 2222333344445555 etc) and stores the new shuffled deck back into the deckOfCards attribute.
+- returns a Card array list (to deckOfCards)
+- create a class that implements the comparator interface
+- the class will compare values in ascending order
+- back in the method, sort the Cards by the comparator class
 
-**ArrayList\<Card\> sortDeckIntoSuits()**
+**ArrayList\<Card\> sortDeckIntoSuits()** [ ]
 
 Sorts the deck into suits (2,3,4,5,6,7,8,9,10,J,Q,K,A of hearts, then 2,3,4,5,6,7,8,9,10,J,Q,K,A of clubs etc.) and stores the new shuffled deck back into the deckOfCards attribute.
 
-**ArrayList\<Card\> shuffleDeck()**
+**ArrayList\<Card\> shuffleDeck()** [ ]
 
 Shuffles the deck into a random order and stores the new shuffled deck back into the deckOfCards attribute.
 
