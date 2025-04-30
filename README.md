@@ -14,12 +14,12 @@ basics, while some of you will push on into the stratosphere!
 
 ---
 
-## Stage 1 [ ]
+## Stage 1 [x]
 
 Using classes, ArrayLists and methods, create a deck of Cards. You should use the following
 classes:
 
-### CardGame [ ]
+### CardGame [x]
 
 - Contains an ArrayList\<Card\> for the deckOfCards that contains all 52 cards. This is created and populated when the game is constructed.
     - 13 cards of each suit
@@ -28,7 +28,7 @@ classes:
     - Each suit needs a card of one symbol and one value
     - ♠ (spade), ♥ (heart), ♦ (diamond), ♣ (club)
 
-    - 3 array lists (suit, symbol, value)
+    - 3 array lists (Enum suit, String symbol, String value)
     - loop through each suit -> loop through each value -> add a new card to the deckOfCards with the suit, symbol and value
 
 - Has a name which is also defined in the constructor.
@@ -43,7 +43,7 @@ classes:
 
 ---
 
-## Stage 2 [ ]
+## Stage 2 [x]
 
 Lets get some core functionality to our CardGame by implementing the following methods:
 
@@ -57,21 +57,19 @@ Takes the card from the top of the deck and returns it.
 
 Sorts the deck in number order (e.g. 2222333344445555 etc) and stores the new shuffled deck back into the deckOfCards attribute.
 - returns a Card array list (to deckOfCards)
-- create a class that implements the comparator interface
-- the class will compare values in ascending order
-- back in the method, sort the Cards by the comparator class
+- ~~create a class that implements the comparator interface~~
+- sort the deckOfCards using a method reference (cut down on code)
 
-**ArrayList\<Card\> sortDeckIntoSuits()** [ ]
+**ArrayList\<Card\> sortDeckIntoSuits()** [x]
 
 Sorts the deck into suits (2,3,4,5,6,7,8,9,10,J,Q,K,A of hearts, then 2,3,4,5,6,7,8,9,10,J,Q,K,A of clubs etc.) and stores the new shuffled deck back into the deckOfCards attribute.
-- call sortDeckInNumberOrder to make sure the cards are ordered by value
-- create a class that implements the comparator interface
-- 3 comparisons are needed: heartCompare, clubCompare, diamondCompare (spades will be left at the end)
-- if Card a and Card b are the same suit, return 0 (remain as they are)
-- if Card a is the suit and Card b is not, return -1 (a goes before b)
-- if Card a is not the suit and Card b is, return 1 (a goes after b)
+- ~~create a class that implements the comparator interface~~
+- create class that contains a static sortDeckBySuit method
+- if suits are equal, sort by value
+- else, sort by suit
+- sort the deckOfCards using a method reference (cut down on code)
 
-**ArrayList\<Card\> shuffleDeck()** [ ]
+**ArrayList\<Card\> shuffleDeck()** [x]
 
 Shuffles the deck into a random order and stores the new shuffled deck back into the deckOfCards attribute.
 - shuffle deckOfCards with the Collections interface method

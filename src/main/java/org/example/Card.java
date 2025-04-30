@@ -1,17 +1,17 @@
 package org.example;
 
 public class Card {
-    private String suit;
+    private CardSuit suit;
     private String symbol;
     private int value;
 
-    public Card(String suit, String symbol, int value) {
+    public Card(CardSuit suit, String symbol, int value) {
         this.suit = suit;
         this.symbol = symbol;
         this.value = value;
     }
 
-    public String getSuit() {
+    public CardSuit getSuit() {
         return suit;
     }
 
@@ -25,7 +25,7 @@ public class Card {
 
     @Override
     public String toString(){
-        return "Suit: " + this.suit +
+        return "Suit: " + this.suit.getSymbol() +
                 " Symbol: " + this.symbol +
                 " Value: " + this.value;
     }

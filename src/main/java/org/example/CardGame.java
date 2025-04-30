@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.*;
+import static org.example.CardSort.*;
 
 public class CardGame {
     private ArrayList<Card> deckOfCards = new ArrayList<>();
@@ -10,12 +11,12 @@ public class CardGame {
     }
 
     private ArrayList<Card> generateDeck(){
-        List<String> suitList = Arrays.asList("♠", "♥", "♦", "♣");
+        List<CardSuit> suitList = Arrays.asList(CardSuit.HEART, CardSuit.CLUB, CardSuit.DIAMOND, CardSuit.SPADE);
         List<String> symbolList = Arrays.asList("2","3","4","5","6","7","8","9","10","J","Q","K","A");
         List<Integer> valueList = Arrays.asList(2,3,4,5,6,7,8,9,10,11,12,13,14);
         ArrayList<Card> newDeckOfCards = new ArrayList<>();
 
-        for (String suit : suitList){
+        for (CardSuit suit : suitList){
             for(int i = 0; i < symbolList.size(); i++){
                 newDeckOfCards.add(new Card(suit, symbolList.get(i), valueList.get(i)));
             }
@@ -27,6 +28,7 @@ public class CardGame {
         for(Card card : this.deckOfCards){
             System.out.println(card.toString());
         }
+        //System.out.println(deckOfCards.size());
     }
 
     public Card dealCard(){
@@ -34,16 +36,17 @@ public class CardGame {
     }
 
     public ArrayList<Card> sortDeckInNumberOrder(){
-        ArrayList<Card> sortedDeck = generateDeck();
-        sortedDeck.sort(new sortByValue());
-        this.deckOfCards = sortedDeck;
+        this.deckOfCards.sort(Comparator.comparingInt(Card::getValue));
         return this.deckOfCards;
     }
-}
 
-class sortByValue implements Comparator<Card> {
-    public int compare(Card a, Card b){
-        return a.getValue() - b.getValue();
+    public ArrayList<Card> sortDeckIntoSuits(){
+        this.deckOfCards.sort(CardSort::sortDeckBySuit);
+        return this.deckOfCards;
     }
 
+    public ArrayList<Card> shuffleDeck(){
+        Collections.shuffle(deckOfCards);
+        return deckOfCards;
+    }
 }
