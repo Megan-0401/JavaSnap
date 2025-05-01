@@ -9,8 +9,8 @@ class CardTest {
 
     @Test
     @DisplayName("Returns correctly formatted string of a single card")
-    void testToString() {
+    void testToString_GivenOneCard_ReturnCorrectStringFormat() {
         Card queenOfHearts = new Card(CardSuit.HEART, "Q", 12);
-        assertEquals("Suit: ♥ Symbol: Q Value: 12", queenOfHearts.toString());
+        assertEquals("Q of ♥", queenOfHearts.toString());
     }
 }

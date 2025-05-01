@@ -52,6 +52,7 @@ Lets get some core functionality to our CardGame by implementing the following m
 Takes the card from the top of the deck and returns it.
 - returns a Card (object)
 - get Card from the first index of deckOfCards
+- remove Card from deck
 
 **ArrayList\<Card\> sortDeckInNumberOrder()** [x]
 
@@ -76,7 +77,7 @@ Shuffles the deck into a random order and stores the new shuffled deck back into
 
 ---
 
-### Stage 3
+### Stage 3 [ ]
 
 Create class for Snap that extends CardGame.
 
@@ -84,9 +85,22 @@ This class should use the methods defined
 above, as well as some new ones, to enable the user to play the game snap according to the
 following rules:
 
-- By pressing enter in the command line, the user takes their turn.
-- Each turn, a new card is dealt from the deck.
-- The game continues until two cards in a row have the same symbol, at which point the “player” wins and the game ends.
+- By pressing enter in the command line, the user takes their turn. [x]
+  - Method -> startSnap()
+  - Prints "Welcome to snap!"
+  - Call shuffleDeck() on deckOfCards
+  - calls new Method -> getUserInput()
+  - Create new Scanner
+  - while deckOfCards is not empty:
+    - prints "Press enter key to show next card"
+    - When Scanner reads enter input, call printCard()
+- Each turn, a new card is dealt from the deck. [x]
+  - Method -> printCard()
+  - calls dealCard() method, convert with toString()
+  - print card to console
+  
+- The game continues until two cards in a row have the same symbol, at which point the “player” wins and the game ends. [x]
+  
 
 ### Stage 4
 

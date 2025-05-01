@@ -25,8 +25,6 @@ public class Card {
 
     @Override
     public String toString(){
-        return "Suit: " + this.suit.getSymbol() +
-                " Symbol: " + this.symbol +
-                " Value: " + this.value;
+        return String.format("%s of %s", getSymbol(), getSuit().getSymbol());
     }
 }

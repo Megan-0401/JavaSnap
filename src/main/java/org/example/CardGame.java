@@ -4,13 +4,17 @@ import java.util.*;
 import static org.example.CardSort.*;
 
 public class CardGame {
-    private ArrayList<Card> deckOfCards = new ArrayList<>();
+    protected ArrayList<Card> deckOfCards = new ArrayList<>();
 
     public CardGame() {
         this.deckOfCards = generateDeck();
     }
 
-    private ArrayList<Card> generateDeck(){
+    public ArrayList<Card> getDeckOfCards() {
+        return deckOfCards;
+    }
+
+    protected ArrayList<Card> generateDeck(){
         List<CardSuit> suitList = Arrays.asList(CardSuit.HEART, CardSuit.CLUB, CardSuit.DIAMOND, CardSuit.SPADE);
         List<String> symbolList = Arrays.asList("2","3","4","5","6","7","8","9","10","J","Q","K","A");
         List<Integer> valueList = Arrays.asList(2,3,4,5,6,7,8,9,10,11,12,13,14);
@@ -32,7 +36,9 @@ public class CardGame {
     }
 
     public Card dealCard(){
-        return this.deckOfCards.get(0);
+        Card dealtCard = this.deckOfCards.get(0);
+        this.deckOfCards.remove(dealtCard);
+        return dealtCard;
     }
 
     public ArrayList<Card> sortDeckInNumberOrder(){
