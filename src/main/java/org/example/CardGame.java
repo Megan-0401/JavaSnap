@@ -14,6 +14,10 @@ public class CardGame {
         return deckOfCards;
     }
 
+    public void setDeckOfCards(ArrayList<Card> deckOfCards) {
+        this.deckOfCards = deckOfCards;
+    }
+
     protected ArrayList<Card> generateDeck(){
         List<CardSuit> suitList = Arrays.asList(CardSuit.HEART, CardSuit.CLUB, CardSuit.DIAMOND, CardSuit.SPADE);
         List<String> symbolList = Arrays.asList("2","3","4","5","6","7","8","9","10","J","Q","K","A");
@@ -42,7 +46,7 @@ public class CardGame {
     }
 
     public ArrayList<Card> sortDeckInNumberOrder(){
-        this.deckOfCards.sort(Comparator.comparingInt(Card::getValue));
+        this.deckOfCards.sort(CardSort::sortDeckByValue);
         return this.deckOfCards;
     }
 

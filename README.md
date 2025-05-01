@@ -57,8 +57,10 @@ Takes the card from the top of the deck and returns it.
 **ArrayList\<Card\> sortDeckInNumberOrder()** [x]
 
 Sorts the deck in number order (e.g. 2222333344445555 etc) and stores the new shuffled deck back into the deckOfCards attribute.
-- returns a Card array list (to deckOfCards)
 - ~~create a class that implements the comparator interface~~
+- create class that contains a static sortDeckByValue method
+- if values are equal, sort by suit
+- else, sort by value
 - sort the deckOfCards using a method reference (cut down on code)
 
 **ArrayList\<Card\> sortDeckIntoSuits()** [x]
@@ -94,6 +96,7 @@ following rules:
   - while deckOfCards is not empty:
     - prints "Press enter key to show next card"
     - When Scanner reads enter input, call printCard()
+    - Help used: https://stackoverflow.com/questions/18281543/java-using-scanner-enter-key-pressed
 - Each turn, a new card is dealt from the deck. [x]
   - Method -> printCard()
   - calls dealCard() method, convert with toString()

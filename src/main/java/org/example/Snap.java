@@ -10,14 +10,6 @@ public class Snap extends CardGame{
     public Snap() {
     }
 
-    public void setCurrentCard(Card currentCard) {
-        this.currentCard = currentCard;
-    }
-
-    public void setPreviousCard(Card previousCard) {
-        this.previousCard = previousCard;
-    }
-
     public void printCard(String card){
         System.out.println("NEXT CARD: " + card);
     }
@@ -25,14 +17,16 @@ public class Snap extends CardGame{
     public void startSnap(){
         System.out.println("Welcome to snap!");
         this.deckOfCards = shuffleDeck();
-        setPreviousCard(null);
+        //resets snap status if user plays again
+        this.previousCard = null;
         getUserInput();
     }
 
     public void dealNewCard(){
-        setPreviousCard(this.currentCard);
+        // swapping currentCard to previousCard
+        this.previousCard = this.currentCard;
         Card currentCard = dealCard();
-        setCurrentCard(currentCard);
+        this.currentCard = currentCard;
         printCard(currentCard.toString());
     }
 
@@ -76,8 +70,7 @@ public class Snap extends CardGame{
                System.out.println("No more cards!");
                playAgain();
                break;
-           }
-           if(checkForSnap()){
+           } else if(checkForSnap()){
                endGame();
                break;
            }
