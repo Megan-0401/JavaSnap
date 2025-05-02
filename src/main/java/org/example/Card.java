@@ -1,9 +1,9 @@
 package org.example;
 
 public class Card {
-    private CardSuit suit;
-    private String symbol;
-    private int value;
+    private final CardSuit suit;
+    private final String symbol;
+    private final int value;
 
     public Card(CardSuit suit, String symbol, int value) {
         this.suit = suit;

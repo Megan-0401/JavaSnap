@@ -1,10 +1,12 @@
 package org.example;
 
 import java.util.*;
-import static org.example.CardSort.*;
 
 public class CardGame {
     protected ArrayList<Card> deckOfCards = new ArrayList<>();
+    private final List<CardSuit> suitList = Arrays.asList(CardSuit.HEART, CardSuit.CLUB, CardSuit.DIAMOND, CardSuit.SPADE);
+    private final List<String> symbolList = Arrays.asList("2","3","4","5","6","7","8","9","10","J","Q","K","A");
+    private final List<Integer> valueList = Arrays.asList(2,3,4,5,6,7,8,9,10,11,12,13,14);
 
     public CardGame() {
         this.deckOfCards = generateDeck();
@@ -19,11 +21,7 @@ public class CardGame {
     }
 
     protected ArrayList<Card> generateDeck(){
-        List<CardSuit> suitList = Arrays.asList(CardSuit.HEART, CardSuit.CLUB, CardSuit.DIAMOND, CardSuit.SPADE);
-        List<String> symbolList = Arrays.asList("2","3","4","5","6","7","8","9","10","J","Q","K","A");
-        List<Integer> valueList = Arrays.asList(2,3,4,5,6,7,8,9,10,11,12,13,14);
         ArrayList<Card> newDeckOfCards = new ArrayList<>();
-
         for (CardSuit suit : suitList){
             for(int i = 0; i < symbolList.size(); i++){
                 newDeckOfCards.add(new Card(suit, symbolList.get(i), valueList.get(i)));

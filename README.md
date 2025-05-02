@@ -79,7 +79,7 @@ Shuffles the deck into a random order and stores the new shuffled deck back into
 
 ---
 
-### Stage 3 [ ]
+### Stage 3 [x]
 
 Create class for Snap that extends CardGame.
 
@@ -93,7 +93,7 @@ following rules:
   - Call shuffleDeck() on deckOfCards
   - calls new Method -> getUserInput()
   - Create new Scanner
-  - while deckOfCards is not empty:
+  - while deckOfCards is not empty, or snap has not occurred:
     - prints "Press enter key to show next card"
     - When Scanner reads enter input, call printCard()
     - Help used: https://stackoverflow.com/questions/18281543/java-using-scanner-enter-key-pressed
@@ -101,8 +101,12 @@ following rules:
   - Method -> printCard()
   - calls dealCard() method, convert with toString()
   - print card to console
-  
 - The game continues until two cards in a row have the same symbol, at which point the “player” wins and the game ends. [x]
+- new method -> EndGame()
+- prints message "Snap! You win!"
+- calls new method -> playAgain(), that asks user whether they'd like to play again
+- if yes, call new method -> resetGame() that generates a new deck and calls startGame()
+- if no, end program
   
 
 ### Stage 4

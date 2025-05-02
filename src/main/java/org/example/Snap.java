@@ -10,24 +10,39 @@ public class Snap extends CardGame{
     public Snap() {
     }
 
-    public void printCard(String card){
+    public void printCard(String card, String prevCard){
+        if(!prevCard.isEmpty()){
+            System.out.println("PREVIOUS CARD: " + prevCard);
+        }
         System.out.println("NEXT CARD: " + card);
     }
 
     public void startSnap(){
         System.out.println("Welcome to snap!");
+        System.out.println("Match two cards with the same symbol in a row to win!");
         this.deckOfCards = shuffleDeck();
-        //resets snap status if user plays again
-        this.previousCard = null;
         getUserInput();
     }
 
+    //resets snap status if user plays again
+    private void resetGame(){
+        System.out.println("Starting new game...");
+        this.deckOfCards = generateDeck();
+        this.previousCard = null;
+        this.currentCard = null;
+        startSnap();
+    }
+
     public void dealNewCard(){
-        // swapping currentCard to previousCard
-        this.previousCard = this.currentCard;
-        Card currentCard = dealCard();
-        this.currentCard = currentCard;
-        printCard(currentCard.toString());
+        String previousCardToString;
+        if(this.previousCard == null){
+            previousCardToString = "";
+        } else{
+            this.previousCard = this.currentCard;
+            previousCardToString = this.previousCard.toString();
+        }
+        this.currentCard = dealCard();
+        printCard(this.currentCard.toString(),previousCardToString);
     }
 
     public boolean checkForSnap() {
@@ -45,13 +60,12 @@ public class Snap extends CardGame{
     }
 
     public void playAgain(){
+        //boolean inputIsValid = false;
         System.out.println("Would you like to play again? Y/N");
         String userInput = scanner.nextLine();
         while(true){
             if (userInput.equalsIgnoreCase("Y")){
-                System.out.println("Starting new game...");
-                this.deckOfCards = generateDeck();
-                startSnap();
+                resetGame();
                 break;
 
             } else if (userInput.equalsIgnoreCase("N")){
