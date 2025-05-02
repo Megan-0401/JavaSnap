@@ -1,26 +1,35 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Snap extends CardGame{
     private Scanner scanner = new Scanner(System.in);
     private Card currentCard;
     private Card previousCard;
+    private ArrayList<Player> playerList = new ArrayList<Player>();
+    private Player currentPlayer;
 
     public Snap() {
     }
 
-    public void printCard(String card, String prevCard){
-        if(!prevCard.isEmpty()){
-            System.out.println("PREVIOUS CARD: " + prevCard);
-        }
-        System.out.println("NEXT CARD: " + card);
+    public void createPlayers(){
+        playerList.add(new Player("One"));
+        playerList.add(new Player("Two"));
+    }
+
+    public void initialiseGame(){
+        createPlayers();
+        System.out.println("Welcome to snap!");
+        System.out.println("Match two cards with the same symbol in a row to win!");
+        startSnap();
     }
 
     public void startSnap(){
-        System.out.println("Welcome to snap!");
-        System.out.println("Match two cards with the same symbol in a row to win!");
         this.deckOfCards = shuffleDeck();
+        currentPlayer = playerList.get(0);
+        dealFirstCard();
         getUserInput();
     }
 
@@ -33,16 +42,20 @@ public class Snap extends CardGame{
         startSnap();
     }
 
+    public void printCard(String card, String prevCard){
+        System.out.println("PREVIOUS CARD: " + prevCard);
+        System.out.println("NEXT CARD: " + card);
+    }
+
     public void dealNewCard(){
-        String previousCardToString;
-        if(this.previousCard == null){
-            previousCardToString = "";
-        } else{
-            this.previousCard = this.currentCard;
-            previousCardToString = this.previousCard.toString();
-        }
+        this.previousCard = this.currentCard;
         this.currentCard = dealCard();
-        printCard(this.currentCard.toString(),previousCardToString);
+        printCard(this.currentCard.toString(),this.previousCard.toString());
+    }
+
+    public void dealFirstCard(){
+        this.currentCard = dealCard();
+        System.out.println("FIRST CARD: " + this.currentCard.toString());
     }
 
     public boolean checkForSnap() {
@@ -55,12 +68,11 @@ public class Snap extends CardGame{
     }
 
     public void endGame(){
-        System.out.println("Snap! You win!");
+        System.out.printf("Snap! Player %s wins!\n", this.currentPlayer.getPlayerName());
         playAgain();
     }
 
     public void playAgain(){
-        //boolean inputIsValid = false;
         System.out.println("Would you like to play again? Y/N");
         String userInput = scanner.nextLine();
         while(true){
@@ -75,19 +87,24 @@ public class Snap extends CardGame{
             System.out.println("Please enter either Y (y) or N (n).");
             userInput = scanner.nextLine();
         }
+    }
 
+    public void switchTurn(){
+        if(this.currentPlayer.getPlayerId() == 1){
+            this.currentPlayer = playerList.get(1);
+        } else{
+            this.currentPlayer = playerList.get(0);
+        }
     }
 
     public void getUserInput(){
-       while(true){
+        while(true){
            if(this.deckOfCards.isEmpty()){
                System.out.println("No more cards!");
                playAgain();
                break;
-           } else if(checkForSnap()){
-               endGame();
-               break;
            }
+           System.out.printf("Player %s's turn:\n", this.currentPlayer.getPlayerName());
            System.out.println("Press enter key to show next card");
            String userInput = scanner.nextLine();
            boolean isInputValid = false;
@@ -100,6 +117,12 @@ public class Snap extends CardGame{
                    userInput = scanner.nextLine();
                }
            }
+            if(checkForSnap()){
+                endGame();
+                break;
+            }
+           System.out.println("No match!\n");
+           switchTurn();
        }
     }
 }

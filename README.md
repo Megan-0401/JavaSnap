@@ -109,10 +109,19 @@ following rules:
 - if no, end program
   
 
-### Stage 4
+### Stage 4 [ ]
 
-Create a Player class and enable the snap game to be two player, with the users taking it in turns to go. If the snap occurs on the users turn, they win.
+Create a Player class and enable the snap game to be two player, with the users taking it in turns to go. If the snap occurs on the users turn, they win. [ ]
+- Player Class [x]
+  - fields -> player id and player name
+  - getters -> playerId, playerName
+- In Snap Class [x]
+  - create field -> ArrayList<Player> playerList
+  - create a method that constructs the two players and stores them into the playerList
+  - create a method that swaps whose turn it is, using a global field and if statement
+  - update getUserInput() and endGame() method to print the current player
+  - create a method that deals the first card automatically (so player one doesn't waste a turn dealing first card)
 
-Add a timer so that when there is a snap opportunity, the player has 2 seconds to submit the word “snap” in order to win. If they don’t type it in time, they lose.
+Add a timer so that when there is a snap opportunity, the player has 2 seconds to submit the word “snap” in order to win. If they don’t type it in time, they lose. [ ]
 
 ---

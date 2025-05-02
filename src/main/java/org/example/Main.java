@@ -7,6 +7,6 @@ public class Main
     {
         //testing Snap class
         Snap newGame = new Snap();
-        newGame.startSnap();
+        newGame.initialiseGame();
     }
 }
