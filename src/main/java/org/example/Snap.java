@@ -1,8 +1,6 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class Snap extends CardGame{
     private Scanner scanner = new Scanner(System.in);
@@ -22,7 +20,7 @@ public class Snap extends CardGame{
     public void initialiseGame(){
         createPlayers();
         System.out.println("Welcome to snap!");
-        System.out.println("Match two cards with the same symbol in a row to win!");
+        System.out.println("If you get two cards with the same symbol in a row, type snap to win!");
         startSnap();
     }
 
@@ -67,8 +65,32 @@ public class Snap extends CardGame{
         return false;
     }
 
+    public void snapOpportunity() {
+        long startTime = System.currentTimeMillis();
+        String userInput = scanner.nextLine();
+        // check if user has given correct input
+            if(userInput.equalsIgnoreCase("snap")){
+                // end time and check if less than 2 seconds
+                long endTime = System.currentTimeMillis();
+                long timeTaken = (endTime - startTime) / 1000;
+                if(timeTaken < 2) {
+                    endGame();
+                } else{
+                    playerLose("Too slow!");
+                }
+            } else{
+                playerLose("You didn't say snap!");
+            }
+    }
+
+    public void playerLose(String message){
+        System.out.println(message);
+        switchTurn();
+        endGame();
+    }
+
     public void endGame(){
-        System.out.printf("Snap! Player %s wins!\n", this.currentPlayer.getPlayerName());
+        System.out.printf("Player %s wins!\n", this.currentPlayer.getPlayerName());
         playAgain();
     }
 
@@ -118,7 +140,7 @@ public class Snap extends CardGame{
                }
            }
             if(checkForSnap()){
-                endGame();
+                snapOpportunity();
                 break;
             }
            System.out.println("No match!\n");

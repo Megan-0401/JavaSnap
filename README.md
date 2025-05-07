@@ -111,7 +111,7 @@ following rules:
 
 ### Stage 4 [ ]
 
-Create a Player class and enable the snap game to be two player, with the users taking it in turns to go. If the snap occurs on the users turn, they win. [ ]
+Create a Player class and enable the snap game to be two player, with the users taking it in turns to go. If the snap occurs on the users turn, they win. [x]
 - Player Class [x]
   - fields -> player id and player name
   - getters -> playerId, playerName
@@ -122,6 +122,17 @@ Create a Player class and enable the snap game to be two player, with the users 
   - update getUserInput() and endGame() method to print the current player
   - create a method that deals the first card automatically (so player one doesn't waste a turn dealing first card)
 
-Add a timer so that when there is a snap opportunity, the player has 2 seconds to submit the word “snap” in order to win. If they don’t type it in time, they lose. [ ]
-
+Add a timer so that when there is a snap opportunity, the player has 2 seconds to submit the word “snap” in order to win. If they don’t type it in time, they lose. [x]
+  - create a method SnapOpportunity() that replaces EndGame() when snap is checked [x]
+  - in SnapOpportunity() [x]
+    - startTime -> grab the current system time
+    - wait for user input
+    - if user inputs "snap"
+      - endTime -> grab the current system time
+      - calculate the time taken for user to input
+      - if less than 2 seconds, then call endGame()
+    - else if they input anything else, or time is greater than 2 seconds, call playerLose() with a message dependent on how they lost
+  - in playerLose(String message) [x]
+    - print message
+    - call switchTurns() and endGame() to grant the other player the win
 ---
