@@ -3,10 +3,10 @@ package org.example;
 import java.util.*;
 
 public class Snap extends CardGame{
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
     private Card currentCard;
     private Card previousCard;
-    private ArrayList<Player> playerList = new ArrayList<Player>();
+    private final ArrayList<Player> playerList = new ArrayList<>();
     private Player currentPlayer;
 
     public Snap() {
@@ -89,8 +89,14 @@ public class Snap extends CardGame{
         endGame();
     }
 
+    public void displayWins(){
+        playerList.forEach(Player::printWins);
+    }
+
     public void endGame(){
         System.out.printf("Player %s wins!\n", this.currentPlayer.getPlayerName());
+        this.currentPlayer.addWin();
+        displayWins();
         playAgain();
     }
 
@@ -104,7 +110,7 @@ public class Snap extends CardGame{
 
             } else if (userInput.equalsIgnoreCase("N")){
                 System.out.println("Thanks for playing!");
-                break;
+                System.exit(0);
             }
             System.out.println("Please enter either Y (y) or N (n).");
             userInput = scanner.nextLine();
@@ -119,13 +125,16 @@ public class Snap extends CardGame{
         }
     }
 
+    public void checkIfDeckEmpty(){
+        if(this.deckOfCards.isEmpty()){
+            System.out.println("No more cards!");
+            playAgain();
+        }
+    }
+
     public void getUserInput(){
         while(true){
-           if(this.deckOfCards.isEmpty()){
-               System.out.println("No more cards!");
-               playAgain();
-               break;
-           }
+           checkIfDeckEmpty();
            System.out.printf("Player %s's turn:\n", this.currentPlayer.getPlayerName());
            System.out.println("Press enter key to show next card");
            String userInput = scanner.nextLine();

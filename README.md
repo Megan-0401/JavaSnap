@@ -79,7 +79,7 @@ Shuffles the deck into a random order and stores the new shuffled deck back into
 
 ---
 
-### Stage 3 [x]
+## Stage 3 [x]
 
 Create class for Snap that extends CardGame.
 
@@ -107,9 +107,10 @@ following rules:
 - calls new method -> playAgain(), that asks user whether they'd like to play again
 - if yes, call new method -> resetGame() that generates a new deck and calls startGame()
 - if no, end program
-  
+ 
+--- 
 
-### Stage 4 [ ]
+## Stage 4 [x]
 
 Create a Player class and enable the snap game to be two player, with the users taking it in turns to go. If the snap occurs on the users turn, they win. [x]
 - Player Class [x]
@@ -123,6 +124,7 @@ Create a Player class and enable the snap game to be two player, with the users 
   - create a method that deals the first card automatically (so player one doesn't waste a turn dealing first card)
 
 Add a timer so that when there is a snap opportunity, the player has 2 seconds to submit the word “snap” in order to win. If they don’t type it in time, they lose. [x]
+  - help used for timer: https://stackoverflow.com/questions/10820033/make-a-simple-timer-in-java
   - create a method SnapOpportunity() that replaces EndGame() when snap is checked [x]
   - in SnapOpportunity() [x]
     - startTime -> grab the current system time
@@ -136,3 +138,11 @@ Add a timer so that when there is a snap opportunity, the player has 2 seconds t
     - print message
     - call switchTurns() and endGame() to grant the other player the win
 ---
+### Extras
+
+- Play again feature -> when a round ends (either from a snap or running out of cards), user is asked whether they'd like to play again
+  - If yes, the game is reset
+  - If no, the program exits
+- Win count -> field wins added to Player class
+  - Every time a player gets a snap, a win is added to their count
+  - Both player's wins are shown at the end of each game
