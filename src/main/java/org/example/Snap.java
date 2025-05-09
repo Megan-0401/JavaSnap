@@ -12,6 +12,26 @@ public class Snap extends CardGame{
     public Snap() {
     }
 
+    public ArrayList<Player> getPlayerList() {
+        return playerList;
+    }
+
+    public void setCurrentCard(Card currentCard) {
+        this.currentCard = currentCard;
+    }
+
+    public void setPreviousCard(Card previousCard) {
+        this.previousCard = previousCard;
+    }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
     public void createPlayers(){
         playerList.add(new Player("One"));
         playerList.add(new Player("Two"));

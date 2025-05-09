@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CardGameTest {
@@ -21,16 +23,15 @@ class CardGameTest {
     }
 
     @Test
-    @DisplayName("When sorted in number order, should see first card in deck to be 2 of hearts")
-    void sortDeckInNumberOrder_WhenCalled_ReturnsListStartingWith2OfHearts() {
-        Card firstExpectedCard = new Card(CardSuit.HEART, "2", 2);
+    @DisplayName("When sorted in number order, should see first four cards in deck to have a value of 2")
+    void sortDeckInNumberOrder_WhenCalled_FirstFourCardsInDeckReturnValueOfTwo() {
+        int expectedValue = 2;
         testGame.setDeckOfCards(testGame.sortDeckInNumberOrder());
-        Card firstAtualCard = testGame.getDeckOfCards().get(0);
-        assertAll( "Testing fields are correct",
-                () -> assertEquals(firstExpectedCard.getSuit(), firstAtualCard.getSuit()),
-                () -> assertEquals(firstExpectedCard.getSymbol(), firstAtualCard.getSymbol()),
-                () -> assertEquals(firstExpectedCard.getValue(), firstAtualCard.getValue())
-        );
+        for(int i = 0; i < 4; i++){
+            int actualValue = testGame.getDeckOfCards().get(i).getValue();
+            assertEquals(expectedValue, actualValue);
+            System.out.printf("Card %d value: %d\n", i, actualValue);
+        }
     }
 
     @Test
@@ -48,10 +49,16 @@ class CardGameTest {
     }
 
     @Test
-    void sortDeckIntoSuits() {
-    }
-
-    @Test
-    void shuffleDeck() {
+    @DisplayName("When sorted into suits, should see first 13 cards in deck to be heart suit")
+    void sortDeckIntoSuits_WhenCalled_FirstThirteenCardsReturnHeartSuit() {
+        CardSuit expectedSuit = CardSuit.HEART;
+        testGame.setDeckOfCards(testGame.sortDeckIntoSuits());
+        CardSuit firstActualCardSuit = testGame.getDeckOfCards().get(0).getSuit();
+        CardSuit thirteenthActualCard = testGame.getDeckOfCards().get(12).getSuit();
+        assertAll("Testing suits are correct",
+                () -> assertEquals(expectedSuit, firstActualCardSuit),
+                () -> assertEquals(expectedSuit, thirteenthActualCard)
+        );
+        System.out.printf("1st card: %s, 13th card: %s\n", firstActualCardSuit.getSymbol(), thirteenthActualCard.getSymbol());
     }
 }
